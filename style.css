@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  background-color: grey;
+}
+
+.grid {
+  background-color: aquamarine;
+}
