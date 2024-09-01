@@ -1,4 +1,5 @@
 const defaultGridSize = 16;
+let userSize = 0;
 let button = document.querySelector(".btn");
 let container = document.querySelector(".container");
 
@@ -19,12 +20,12 @@ createGrid(defaultGridSize);
 changeBG();
 
 function changeGrid() {
-  let size = parseInt(prompt("How many grid?"));
-  if (size > 100) {
+  userSize = parseInt(prompt("How many grid?"));
+  if (userSize > 100) {
     return alert("Please put numbers less than 100");
   }
   container.replaceChildren();
-  createGrid(size);
+  createGrid(userSize);
   changeBG();
 }
 
@@ -39,3 +40,28 @@ function changeBG() {
 }
 
 button.addEventListener("click", changeGrid);
+
+const colorize = document.querySelector(".color");
+
+function changeColor() {
+  container.replaceChildren();
+  if (userSize === 0) {
+    createGrid(defaultGridSize);
+  } else {
+    createGrid(userSize);
+  }
+
+  const divs = document.querySelectorAll(".grid");
+  divs.forEach((item) => {
+    item.addEventListener("mouseover", (e) => {
+      const box = e.target;
+      box.style.cssText = `background-color: rgb(${
+        Math.floor(Math.random() * 255) + 1
+      }, ${Math.floor(Math.random() * 255) + 1}, ${
+        Math.floor(Math.random() * 255) + 1
+      })`;
+    });
+  });
+}
+
+colorize.addEventListener("click", changeColor);
