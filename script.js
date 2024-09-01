@@ -16,6 +16,7 @@ function createGrid(size) {
 }
 
 createGrid(defaultGridSize);
+changeBG();
 
 function changeGrid() {
   let size = parseInt(prompt("How many grid?"));
@@ -24,24 +25,17 @@ function changeGrid() {
   }
   container.replaceChildren();
   createGrid(size);
+  changeBG();
 }
 
-function changeBG(e) {
-  return div.classList.toggle("hover");
+function changeBG() {
+  const divs = document.querySelectorAll(".grid");
+  divs.forEach((item) => {
+    item.addEventListener("mouseover", (e) => {
+      const box = e.target;
+      box.style.cssText = "background-color: black";
+    });
+  });
 }
 
 button.addEventListener("click", changeGrid);
-
-const divs = document.querySelectorAll(".grid");
-divs.forEach((item) => {
-  item.addEventListener("mouseover", (e) => {
-    const box = e.target;
-    box.style.cssText = "background-color: black";
-  });
-});
-
-// container.addEventListener("mouseenter", (e) => {
-//   console.log(e);
-//   const box = e.target;
-//   box.style.cssText = "background-color: black";
-// });
