@@ -65,3 +65,31 @@ function changeColor() {
 }
 
 colorize.addEventListener("click", changeColor);
+
+const darker = document.querySelector(".darken");
+
+function darkening() {
+  container.replaceChildren();
+  if (userSize === 0) {
+    createGrid(defaultGridSize);
+  } else {
+    createGrid(userSize);
+  }
+
+  let percent = 0;
+  const divs = document.querySelectorAll(".grid");
+  divs.forEach((item) => {
+    item.addEventListener("mouseover", (e) => {
+      if (percent === 100) {
+        percent = 10;
+      } else {
+        percent += 10;
+      }
+      console.log(percent);
+      const box = e.target;
+      box.style.cssText = `background-color: black; opacity: ${percent}%`;
+    });
+  });
+}
+
+darker.addEventListener("click", darkening);
